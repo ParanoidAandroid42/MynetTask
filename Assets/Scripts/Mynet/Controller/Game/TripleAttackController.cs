@@ -13,7 +13,7 @@ namespace Mynet.Controller
 
         public override void Fire(float angle, Vector3 position)
         {
-            Debug.LogError("Triple Shot Attack");
+            Debug.Log("Triple Shot Attack");
             base.Fire(angle - 45f,position);
             base.Fire(angle,position);
             base.Fire(angle + 45f, position);

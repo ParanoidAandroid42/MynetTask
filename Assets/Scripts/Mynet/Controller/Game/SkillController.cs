@@ -14,16 +14,20 @@ namespace Mynet.Controller
         public float fireSpeed;
         public float rateOffset = 2;
         public GameObject bulletPrefab;
+        public Transform firePoint;
 
         private IAttackInterface _attack;
-        private Dictionary<Enum.FeatureType, FeatureController> _featureControllers;
+        public List<Feature> features;
 
         public IAttackInterface Attack { get => _attack; set => _attack = value; }
+
+        private Animator _animator;
 
         private bool _gameStart;
 
         public void Awake()
         {
+            _animator = GetComponent<Animator>();
             InitConfigurations();
         }
 
@@ -34,8 +38,19 @@ namespace Mynet.Controller
 
         public void StartGame()
         {
-            _featureControllers = new Dictionary<Enum.FeatureType, FeatureController>();
+            features = new List<Feature>();
             _attack = new BaseRangeAttackController(bulletPrefab, fireSpeed, fireRate,rateOffset);
+            _gameStart = true;
+        }
+
+        public void Clone(List<Feature> featureControllers)
+        {
+            features = featureControllers;
+            _attack = new BaseRangeAttackController(bulletPrefab, fireSpeed, fireRate, rateOffset);
+            for (int i = 0; i < features.Count; i++)
+            {
+                AddFeature(features[i]);
+            }
             _gameStart = true;
         }
 
@@ -43,7 +58,7 @@ namespace Mynet.Controller
         {
             if (_gameStart && _attack.IsAttacktimeUpdated(Time.deltaTime))
             {
-                _attack.Fire(transform.eulerAngles.x,transform.position);
+                _attack.Fire(transform.eulerAngles.x, transform.position);
             }
         }
 
@@ -51,6 +66,7 @@ namespace Mynet.Controller
         {
             EventManager.Instance.StartListening(Enum.GameAction.OnFeatureButton.ToString(), OnFeatureButton);
             EventManager.Instance.StartListening(Enum.StateAction.OnGame.ToString(), OnGame);
+            EventManager.Instance.StartListening(Enum.StateAction.OnMenu.ToString(), OnMenu);
         }
 
         /// <summary>
@@ -73,10 +89,36 @@ namespace Mynet.Controller
         }
 
         /// <summary>
+        /// On Menu configuration
+        /// </summary>
+        /// <param name="arg"></param>
+        public void OnMenu(System.Object arg = null)
+        {
+            _gameStart = false;
+            ClearObjects();
+        }
+
+        public void ClearObjects()
+        {
+
+        }
+
+        /// <summary>
         /// add new feature according to pressed feature button
         /// </summary>
         /// <param name="feature"></param>
         public void AddNewFeature(Feature feature)
+        {
+            AddFeature(feature);
+            features.Add(feature);
+            CheckAdditionalityNewFeature();
+        }
+
+        /// <summary>
+        /// add feature controller
+        /// </summary>
+        /// <param name="feature"></param>
+        private void AddFeature(Feature feature)
         {
             FeatureController _featureController = null;
             switch (feature.featureType)
@@ -97,10 +139,7 @@ namespace Mynet.Controller
                     _featureController = new TripleFeatureController(this);
                     break;
             }
-            _featureControllers.Add(feature.featureType, _featureController);
-            CheckAdditionalityNewFeature();
         }
-        
 
         /// <summary>
         /// check additionality new feature according to skill controller count - max capacity = 3 
@@ -108,7 +147,7 @@ namespace Mynet.Controller
         /// <returns></returns>
         private void CheckAdditionalityNewFeature()
         {
-            if(_featureControllers.Count >= 3)
+            if(features.Count >= 3)
             {
                 EventManager.Instance.TriggerEvent(Enum.StateAction.FeatureButtonSetState.ToString(), false);
             }

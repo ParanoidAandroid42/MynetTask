@@ -46,7 +46,6 @@ namespace Mynet.Controller
         void OnGame(System.Object arg = null)
         {
             transform.DOMove(onGame, 1);
-
         }
     }
 }

@@ -6,8 +6,8 @@ namespace Mynet.Manager
 { 
     public class PoolerManager : MonoBehaviour
     {
-        public Dictionary<string, Queue<GameObject>> poolerDictionary;
-        public List<Pool> pools;
+        private Dictionary<string, Queue<GameObject>> _poolerDictionary;
+        private List<Pool> _pools;
 
         #region singleton
         public static PoolerManager Instance;
@@ -22,7 +22,7 @@ namespace Mynet.Manager
         [System.Serializable]
         public class Pool
         {
-            public string tag;
+            public Enum.Tag tag;
             public GameObject prefab;
             public int size;
         }
@@ -34,55 +34,36 @@ namespace Mynet.Manager
 
         void Init()
         {
-            poolerDictionary = new Dictionary<string, Queue<GameObject>>();
-            foreach (Pool pool in pools)
+            _poolerDictionary = new Dictionary<string, Queue<GameObject>>();
+        }
+
+        public void AddPools(Pool poolData)
+        {
+            if (!_poolerDictionary.ContainsKey(poolData.tag.ToString()))
             {
                 Queue<GameObject> pO = new Queue<GameObject>();
-                for (int i = 0; i < pool.size; i++)
+                for (int i = 0; i < poolData.size; i++)
                 {
-                    GameObject o = Instantiate(pool.prefab, transform);
+                    GameObject o = Instantiate(poolData.prefab, transform);
                     o.SetActive(false);
                     pO.Enqueue(o);
                 }
 
-                poolerDictionary.Add(pool.tag, pO);
+                _poolerDictionary.Add(poolData.tag.ToString(), pO);
             }
         }
 
-        public void SetDeActiveAll()
+        public GameObject GetPool(Enum.Tag tag)
         {
-            foreach (Pool pool in pools)
-            {
-                for (int i = 0; i < pool.size; i++)
-                {
-                    if (poolerDictionary.ContainsKey(pool.tag))
-                    {
-                        GameObject oS = poolerDictionary[pool.tag].Dequeue();
-                        Destroy(oS);
-                    }
-                }
-            }
-            Init();
+            GameObject pool = _poolerDictionary[tag.ToString()].Dequeue();
+            pool.SetActive(true);
+            return pool;
         }
 
-        /// <summary>
-        /// spawn according to tag from pool
-        /// </summary>
-        /// <param name="tag">pool object tag</param>
-        /// <param name="position">pool object position</param>
-        /// <returns></returns>
-        public GameObject SpawnPoolTag(string tag, Vector3 position)
+        public void AddEnqueue(GameObject gO,Enum.Tag tag)
         {
-            if (!poolerDictionary.ContainsKey(tag))
-            {
-                return null;
-            }
-            GameObject oS = poolerDictionary[tag].Dequeue();
-            oS.SetActive(true);
-            oS.transform.position = position;
-
-            poolerDictionary[tag].Enqueue(oS);
-            return oS;
+            _poolerDictionary[tag.ToString()].Enqueue(gO);
+            gO.SetActive(false);
         }
     }
 }
