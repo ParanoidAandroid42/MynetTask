@@ -7,12 +7,14 @@ namespace Mynet.Controller
 {
     public class QuickUpFeatureController : FeatureController
     {
-        public QuickUpFeatureController(IAttackInterface attackController) : base(attackController) { }
+        public QuickUpFeatureController(SkillController skillController) : base(skillController)
+        {
+        }
 
-        public override void SetFeature(IAttackInterface attackController)
+        public override void SetFeature(SkillController skillController)
         {
             Debug.LogError("Set Feature quick up");
-            attackController.FireRate /= 2;
+            //attackController.FireRate /= 2;
         }
     }
 }

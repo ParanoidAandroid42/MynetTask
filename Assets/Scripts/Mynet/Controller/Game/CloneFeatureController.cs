@@ -7,9 +7,11 @@ namespace Mynet.Controller
 {
     public class CloneFeatureController : FeatureController
     {
-        public CloneFeatureController(IAttackInterface attackController) : base(attackController) { }
+        public CloneFeatureController(SkillController skillController) : base(skillController)
+        {
+        }
 
-        public override void SetFeature(IAttackInterface attackController)
+        public override void SetFeature(SkillController skillController)
         {
             Debug.LogError("Set Feature Clone");
         }

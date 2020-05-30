@@ -7,14 +7,15 @@ namespace Mynet.Controller
 {
     public class SpeedUpFeatureController : FeatureController
     {
-        public SpeedUpFeatureController(IAttackInterface attackController) : base(attackController)
+        public SpeedUpFeatureController(SkillController skillController) : base(skillController)
         {
         }
 
-        public override void SetFeature(IAttackInterface attackController)
+        public override void SetFeature(SkillController skillController)
         {
             Debug.LogError("Set Feature speedUp");
-            attackController.FireSpeed += attackController.FireSpeed * 50 / 100;
+
+            //skillController.Attack.FireSpeed += skillController.Attack.FireSpeed * 50 / 100;
         }
     }
 }

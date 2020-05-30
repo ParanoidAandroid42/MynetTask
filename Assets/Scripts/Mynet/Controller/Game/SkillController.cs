@@ -82,19 +82,19 @@ namespace Mynet.Controller
             switch (feature.featureType)
             {
                 case Enum.FeatureType.CloneCharacter:
-                    _featureController = new CloneFeatureController(_attack);
+                    _featureController = new CloneFeatureController(this);
                     break;
                 case Enum.FeatureType.QuickUp:
-                    _featureController = new QuickUpFeatureController(_attack);
+                    _featureController = new QuickUpFeatureController(this);
                     break;
                 case Enum.FeatureType.DoubleShot:
-                    _featureController = new DoubleShotFeatureController(_attack);
+                    _featureController = new DoubleShotFeatureController(this);
                     break;
                 case Enum.FeatureType.SpeedUp:
-                    _featureController = new SpeedUpFeatureController(_attack);
+                    _featureController = new SpeedUpFeatureController(this);
                     break;
                 case Enum.FeatureType.TripleShot:
-                    _featureController = new TripleFeatureController(_attack);
+                    _featureController = new TripleFeatureController(this);
                     break;
             }
             _featureControllers.Add(feature.featureType, _featureController);

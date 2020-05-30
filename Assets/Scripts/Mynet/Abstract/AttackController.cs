@@ -21,7 +21,6 @@ namespace Mynet.Abstract
         public virtual void Fire(float angle, Vector3 position)
         {
             Debug.LogError("Attack");
-            Debug.LogError(FireSpeed);
             _attack.Fire(angle, position);
         }
 

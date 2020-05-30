@@ -26,7 +26,7 @@ namespace Mynet.Controller
 
         public void Fire(float angle, Vector3 position)
         {
-            Debug.LogError(FireSpeed);
+            Debug.LogError("Base attack");
         }
 
         public bool IsAttacktimeUpdated(float currentTime)

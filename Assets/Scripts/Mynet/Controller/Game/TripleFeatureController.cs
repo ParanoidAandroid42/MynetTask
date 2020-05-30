@@ -7,13 +7,14 @@ namespace Mynet.Controller
 {
     public class TripleFeatureController : FeatureController
     {
-        public TripleFeatureController(IAttackInterface attackController) : base(attackController) {
+        public TripleFeatureController(SkillController skillController) : base(skillController)
+        {
         }
 
-        public override void SetFeature(IAttackInterface attackController)
+        public override void SetFeature(SkillController skillController)
         {
             Debug.LogError("Set Feature triple");
-            attackController = new TripleAttackController(attackController);
+            skillController.Attack = new TripleAttackController(skillController.Attack);
         }
     }
 }
