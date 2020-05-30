@@ -1,11 +1,19 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using Mynet.Interface;
 
-public class FeatureController : MonoBehaviour
+namespace Mynet.Controller
 {
-    public FeatureController()
+    //this class is abstract ; beause maybe it will be expandable.
+    public abstract class FeatureController: IFeatureInterface
     {
+        public FeatureController(IAttackInterface attackController)
+        {
+            SetFeature(attackController);
+        }
 
+        public virtual void SetFeature(IAttackInterface attackController)
+        {
+             // can be added some base codes. just now, anycode in here.
+        }
     }
 }

@@ -6,7 +6,6 @@ namespace Mynet.Manager
 { 
     public class PoolerManager : MonoBehaviour
     {
-        //It can be useless maybe; but I dont use yet for this project
         public Dictionary<string, Queue<GameObject>> poolerDictionary;
         public List<Pool> pools;
 
@@ -41,7 +40,7 @@ namespace Mynet.Manager
                 Queue<GameObject> pO = new Queue<GameObject>();
                 for (int i = 0; i < pool.size; i++)
                 {
-                    GameObject o = Instantiate(pool.prefab);
+                    GameObject o = Instantiate(pool.prefab, transform);
                     o.SetActive(false);
                     pO.Enqueue(o);
                 }

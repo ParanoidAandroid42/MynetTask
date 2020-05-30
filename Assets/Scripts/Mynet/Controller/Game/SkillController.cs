@@ -16,6 +16,8 @@ namespace Mynet.Controller
         private IAttackInterface _attack;
         private Dictionary<Enum.FeatureType, FeatureController> _featureControllers;
 
+        public IAttackInterface Attack { get => _attack; set => _attack = value; }
+
         public void Awake()
         {
             InitConfigurations();
@@ -33,43 +35,55 @@ namespace Mynet.Controller
 
         public void InitEvents()
         {
-            EventManager.Instance.StartListening(Enum.GameAction.OnSkillButton.ToString(), OnSkillButton);
+            EventManager.Instance.StartListening(Enum.GameAction.OnFeatureButton.ToString(), OnFeatureButton);
             EventManager.Instance.StartListening(Enum.StateAction.OnGame.ToString(), OnGame);
         }
 
-        public void OnSkillButton(System.Object arg = null)
+        /// <summary>
+        /// run when pressed featureButton
+        /// </summary>
+        /// <param name="arg"></param>
+        public void OnFeatureButton(System.Object arg = null)
         {
             Feature skill = (Feature)arg;
-            AddNewSkill(skill);
+            AddNewFeature(skill);
         }
 
+        /// <summary>
+        /// On Game configuration
+        /// </summary>
+        /// <param name="arg"></param>
         public void OnGame(System.Object arg = null)
         {
             StartGame();
         }
 
-        public void AddNewSkill(Feature skill)
+        /// <summary>
+        /// add new feature according to pressed feature button
+        /// </summary>
+        /// <param name="feature"></param>
+        public void AddNewFeature(Feature feature)
         {
             FeatureController _featureController = null;
-            switch (skill.featureType)
+            switch (feature.featureType)
             {
                 case Enum.FeatureType.CloneCharacter:
-                    _featureController = new FeatureController();
+                    _featureController = new CloneFeatureController(_attack);
                     break;
                 case Enum.FeatureType.QuickUp:
-                    _featureController = new FeatureController();
+                    _featureController = new QuickUpFeatureController(_attack);
                     break;
                 case Enum.FeatureType.RateUp:
-                    _featureController = new FeatureController();
+                    _featureController = new RateUpFeatureController(_attack);
                     break;
                 case Enum.FeatureType.SpeedUp:
-                    _featureController = new FeatureController();
+                    _featureController = new SpeedUpFeatureController(_attack);
                     break;
                 case Enum.FeatureType.TripleShot:
-                    _featureController = new FeatureController();
+                    _featureController = new TripleFeatureController(_attack);
                     break;
             }
-            _featureControllers.Add(skill.featureType, _featureController);
+            _featureControllers.Add(feature.featureType, _featureController);
             CheckAdditionalityNewFeature();
         }
         
@@ -85,5 +99,7 @@ namespace Mynet.Controller
                 EventManager.Instance.TriggerEvent(Enum.StateAction.FeatureButtonSetState.ToString(), false);
             }
         }
+
+        
     }
 }

@@ -43,7 +43,7 @@ public class FeatureButton : MonoBehaviour
     /// </summary>
     public void OnSkillButton()
     {
-        EventManager.Instance.TriggerEvent(Enum.GameAction.OnSkillButton.ToString(), _skill);
+        EventManager.Instance.TriggerEvent(Enum.GameAction.OnFeatureButton.ToString(), _skill);
         SetInteractive(false);
     }
 }

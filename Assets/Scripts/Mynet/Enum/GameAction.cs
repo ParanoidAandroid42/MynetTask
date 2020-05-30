@@ -2,6 +2,6 @@
 {
     public enum GameAction
     {
-        OnSkillButton
+        OnFeatureButton
     }
 }
