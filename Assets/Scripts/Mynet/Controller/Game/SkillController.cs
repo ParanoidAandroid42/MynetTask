@@ -4,6 +4,7 @@ using UnityEngine;
 using Mynet.Interface;
 using Mynet.Manager;
 using Mynet.Data;
+using Mynet.Abstract;
 
 namespace Mynet.Controller
 {

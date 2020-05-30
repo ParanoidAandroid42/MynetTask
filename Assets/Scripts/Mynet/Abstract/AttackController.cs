@@ -7,11 +7,21 @@ namespace Mynet.Abstract
 {
     public abstract class AttackController : IAttackInterface
     {
-        public void Fire(float angle, Vector3 position)
+        protected IAttackInterface _attack;
+
+        public float FireRate { get => _attack.FireRate; set => _attack.FireRate = value; }
+        public float FireSpeed { get => _attack.FireSpeed; set => _attack.FireSpeed = value; }
+
+        public AttackController(IAttackInterface attackController)
+        {
+            _attack = attackController;
+        }
+
+        public virtual void Fire(float angle, Vector3 position)
         {
         }
 
-        public bool IsAttacktimeUpdated(float currentTime)
+        public virtual bool IsAttacktimeUpdated(float currentTime)
         {
             return false;
         }

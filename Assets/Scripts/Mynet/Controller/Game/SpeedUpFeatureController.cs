@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using Mynet.Interface;
+using Mynet.Abstract;
 
 namespace Mynet.Controller
 {
@@ -13,6 +14,7 @@ namespace Mynet.Controller
         public override void SetFeature(IAttackInterface attackController)
         {
             Debug.LogError("Set Feature speedUp");
+            attackController = new SpeedUpAttackController(attackController);
         }
     }
 }
