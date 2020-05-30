@@ -6,9 +6,9 @@
     public enum FeatureType
     {
         TripleShot,
-        RateUp,
+        DoubleShot,
         SpeedUp,
         QuickUp,
-        CloneCharacter,
+        CloneCharacter
     }
 }

@@ -4,13 +4,15 @@ using Mynet.Interface;
 
 namespace Mynet.Controller
 {
-    public class QuickUpAttackController : AttackController
+    public class DoubleShotAttackController : AttackController
     {
-        public QuickUpAttackController(IAttackInterface attackController) : base(attackController) { }
+        public DoubleShotAttackController(IAttackInterface attack) : base(attack)
+        {
+        }
 
         public override void Fire(float angle, Vector3 position)
         {
-
+            Debug.LogError("Double Shot Attack");
         }
 
         public override bool IsAttacktimeUpdated(float currentTime)

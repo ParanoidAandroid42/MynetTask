@@ -5,16 +5,16 @@ using Mynet.Abstract;
 
 namespace Mynet.Controller
 {
-    public class RateUpFeatureController : FeatureController
+    public class DoubleShotFeatureController : FeatureController
     {
-        public RateUpFeatureController(IAttackInterface attackController) : base(attackController)
+        public DoubleShotFeatureController(IAttackInterface attackController) : base(attackController)
         {
         }
 
         public override void SetFeature(IAttackInterface attackController)
         {
             Debug.LogError("Set Feature rate up");
-            attackController = new RateUpAttackController(attackController);
+            attackController = new DoubleShotAttackController(attackController);
         }
     }
 }

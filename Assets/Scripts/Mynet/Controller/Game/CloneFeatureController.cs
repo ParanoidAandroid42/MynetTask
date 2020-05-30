@@ -12,7 +12,6 @@ namespace Mynet.Controller
         public override void SetFeature(IAttackInterface attackController)
         {
             Debug.LogError("Set Feature Clone");
-            attackController = new CloneShotAttackController(attackController);
         }
     }
 }

@@ -12,12 +12,15 @@ namespace Mynet.Controller
     {
         public float fireRate;
         public float fireSpeed;
+        public float rateOffset = 2;
         public GameObject bulletPrefab;
 
         private IAttackInterface _attack;
         private Dictionary<Enum.FeatureType, FeatureController> _featureControllers;
 
         public IAttackInterface Attack { get => _attack; set => _attack = value; }
+
+        private bool _gameStart;
 
         public void Awake()
         {
@@ -32,6 +35,16 @@ namespace Mynet.Controller
         public void StartGame()
         {
             _featureControllers = new Dictionary<Enum.FeatureType, FeatureController>();
+            _attack = new BaseRangeAttackController(bulletPrefab, fireSpeed, fireRate,rateOffset);
+            _gameStart = true;
+        }
+
+        public void Update()
+        {
+            if (_gameStart && _attack.IsAttacktimeUpdated(Time.deltaTime))
+            {
+                _attack.Fire(transform.eulerAngles.x,transform.position);
+            }
         }
 
         public void InitEvents()
@@ -74,8 +87,8 @@ namespace Mynet.Controller
                 case Enum.FeatureType.QuickUp:
                     _featureController = new QuickUpFeatureController(_attack);
                     break;
-                case Enum.FeatureType.RateUp:
-                    _featureController = new RateUpFeatureController(_attack);
+                case Enum.FeatureType.DoubleShot:
+                    _featureController = new DoubleShotFeatureController(_attack);
                     break;
                 case Enum.FeatureType.SpeedUp:
                     _featureController = new SpeedUpFeatureController(_attack);
@@ -100,7 +113,5 @@ namespace Mynet.Controller
                 EventManager.Instance.TriggerEvent(Enum.StateAction.FeatureButtonSetState.ToString(), false);
             }
         }
-
-        
     }
 }

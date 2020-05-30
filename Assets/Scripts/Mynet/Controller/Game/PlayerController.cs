@@ -10,7 +10,6 @@ namespace Mynet.Controller
     {
         public Vector3 onMenu;
         public Vector3 onGame;
-        public SkillController featureController;
 
         void Awake()
         {

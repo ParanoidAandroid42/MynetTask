@@ -14,7 +14,7 @@ namespace Mynet.Controller
         public override void SetFeature(IAttackInterface attackController)
         {
             Debug.LogError("Set Feature speedUp");
-            attackController = new SpeedUpAttackController(attackController);
+            attackController.FireSpeed += attackController.FireSpeed * 50 / 100;
         }
     }
 }

@@ -11,19 +11,23 @@ namespace Mynet.Abstract
 
         public float FireRate { get => _attack.FireRate; set => _attack.FireRate = value; }
         public float FireSpeed { get => _attack.FireSpeed; set => _attack.FireSpeed = value; }
+        public float RateOffset { get => _attack.RateOffset; set => _attack.RateOffset = value; }
 
-        public AttackController(IAttackInterface attackController)
+        public AttackController(IAttackInterface attack)
         {
-            _attack = attackController;
+            _attack = attack;
         }
 
         public virtual void Fire(float angle, Vector3 position)
         {
+            Debug.LogError("Attack");
+            Debug.LogError(FireSpeed);
+            _attack.Fire(angle, position);
         }
 
         public virtual bool IsAttacktimeUpdated(float currentTime)
         {
-            return false;
+            return _attack.IsAttacktimeUpdated(currentTime);
         }
     }
 }
