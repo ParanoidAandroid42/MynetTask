@@ -10,7 +10,7 @@ namespace Mynet.Controller
     public class GameUIController : MonoBehaviour
     {
         public GameObject buttonPrefab;
-        public Button restartButton;
+        public Button quitButton;
         public CharacterSkillData characterSkillsData;
 
         private RectTransform _gameUITransform;
@@ -34,18 +34,19 @@ namespace Mynet.Controller
         /// </summary>
         void InitEvents()
         {
-            restartButton.onClick.AddListener(OnRestartButton);
+            quitButton.onClick.AddListener(OnQuitButton);
             EventManager.Instance.StartListening(Enum.StateAction.OnGame.ToString(), OnGame);
         }
 
         /// <summary>
-        /// on click playbutton configuration
+        /// on click quitbutton configuration
         /// </summary>
-        void OnRestartButton()
+        void OnQuitButton()
         {
-            restartButton.GetComponent<RectTransform>().DOAnchorPosX(145f, 0.5f).OnComplete(() =>
+            quitButton.GetComponent<RectTransform>().DOAnchorPosX(145f, 0.5f).OnComplete(() =>
             {
                 _gameUITransform.DOAnchorPosY(-800f, 3f);
+                EventManager.Instance.TriggerEvent(Enum.StateAction.OnMenu.ToString());
             });
         }
 
@@ -57,7 +58,7 @@ namespace Mynet.Controller
         {
             _gameUITransform.DOAnchorPosY(0f, 1f).OnComplete(() =>
             {
-                restartButton.GetComponent<RectTransform>().DOAnchorPosX(-10f, 0.5f);
+                quitButton.GetComponent<RectTransform>().DOAnchorPosX(-10f, 0.5f);
             });
             SetButtonInteractable(true);
         }
