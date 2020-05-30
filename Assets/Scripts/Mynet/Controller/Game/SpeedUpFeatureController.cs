@@ -14,8 +14,7 @@ namespace Mynet.Controller
         public override void SetFeature(SkillController skillController)
         {
             Debug.LogError("Set Feature speedUp");
-
-            //skillController.Attack.FireSpeed += skillController.Attack.FireSpeed * 50 / 100;
+            skillController.Attack.FireSpeed += skillController.Attack.FireSpeed * 50 / 100;
         }
     }
 }

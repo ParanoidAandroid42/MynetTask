@@ -7,9 +7,7 @@ namespace Mynet.Controller
 {
     public class DoubleShotFeatureController : FeatureController
     {
-        public DoubleShotFeatureController(SkillController skillController) : base(skillController)
-        {
-        }
+        public DoubleShotFeatureController(SkillController skillController) : base(skillController) { }
 
         public override void SetFeature(SkillController skillController)
         {

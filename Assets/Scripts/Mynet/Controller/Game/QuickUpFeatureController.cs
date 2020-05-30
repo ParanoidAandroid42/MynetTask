@@ -14,7 +14,7 @@ namespace Mynet.Controller
         public override void SetFeature(SkillController skillController)
         {
             Debug.LogError("Set Feature quick up");
-            //attackController.FireRate /= 2;
+            skillController.Attack.FireRate /= 2;
         }
     }
 }

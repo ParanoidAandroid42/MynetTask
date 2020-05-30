@@ -11,6 +11,10 @@ namespace Mynet.Controller
         {
         }
 
+        /// <summary>
+        /// set clone player
+        /// </summary>
+        /// <param name="skillController"></param>
         public override void SetFeature(SkillController skillController)
         {
             Debug.LogError("Set Feature Clone");
