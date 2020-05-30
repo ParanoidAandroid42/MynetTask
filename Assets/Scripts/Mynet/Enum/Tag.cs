@@ -6,6 +6,7 @@
     public enum Tag
     {
         Player,
-        FireBall
+        FireBall,
+        Clone
     }
 }

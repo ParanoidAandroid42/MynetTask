@@ -9,6 +9,10 @@ namespace Mynet.Controller
     {
         public DoubleShotFeatureController(SkillController skillController) : base(skillController) { }
 
+        /// <summary>
+        /// add new feature to skillcontroller
+        /// </summary>
+        /// <param name="skillController"></param>
         public override void SetFeature(SkillController skillController)
         {
             Debug.LogError("Set Feature rate up");

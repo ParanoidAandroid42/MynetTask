@@ -8,9 +8,8 @@ namespace Mynet.Controller
 {
     public class CloneFeatureController : FeatureController
     {
-        const float _Z_ = -.5f;
-        readonly Vector2 _MIN_ = new Vector2(-10f, 20f);
-        readonly Vector2 _MAX_ = new Vector2(10f, 30f);
+        readonly Vector2 _MINIMUM = new Vector2(-10f, 20f);
+        readonly Vector2 _MAXIMUM = new Vector2(10f, 30f);
 
         public CloneFeatureController(SkillController skillController) : base(skillController)
         {
@@ -23,17 +22,13 @@ namespace Mynet.Controller
         public override void SetFeature(SkillController skillController)
         {
             Debug.LogError("Set Feature Clone");
-            PoolerManager.Pool poolData = new PoolerManager.Pool();
-            poolData.size = 1;
-            poolData.prefab = skillController.gameObject;
-            poolData.tag = Enum.Tag.Player;
-            PoolerManager.Instance.AddPools(poolData);
-            GameObject clone = PoolerManager.Instance.GetPool(Enum.Tag.Player);
+            GameObject clone = MonoBehaviour.Instantiate(skillController.gameObject);
 
-            GameObject objectToBeCloned = skillController.gameObject;
-            Vector3 rndpos = new Vector3(Random.Range(_MIN_.x, _MAX_.x), Random.Range(_MIN_.y, _MAX_.y), _Z_);
-            clone.transform.position = rndpos;
-            clone.GetComponent<SkillController>().Clone(objectToBeCloned.GetComponent<SkillController>().features);
+            SkillController skill = skillController.gameObject.GetComponent<SkillController>();
+            Vector2 randomPos = new Vector2(Random.Range(_MINIMUM.x, _MAXIMUM.x), Random.Range(_MINIMUM.y, _MAXIMUM.y));
+            clone.transform.position = randomPos;
+            clone.GetComponent<SkillController>().Clone(skill.features);
+            clone.tag = Enum.Tag.Clone.ToString();
         }
     }
 }

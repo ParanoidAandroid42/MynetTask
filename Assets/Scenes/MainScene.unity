@@ -453,6 +453,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 264e6a1fbf9d3d24dbb642fa4d35de49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerPrefab: {fileID: 3332470754940515520, guid: 9182f9aaf56882744a0148bfcccfa39c,
+    type: 3}
 --- !u!4 &767558080
 Transform:
   m_ObjectHideFlags: 0
@@ -681,6 +683,7 @@ MonoBehaviour:
   bulletPrefab: {fileID: 1170480630469472, guid: b348c70b70beb3849acc7a74e175bd99,
     type: 3}
   firePoint: {fileID: 1496251385}
+  features: []
 --- !u!1001 &2001774960
 PrefabInstance:
   m_ObjectHideFlags: 0

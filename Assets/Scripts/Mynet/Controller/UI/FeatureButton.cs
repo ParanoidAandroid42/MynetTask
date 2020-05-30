@@ -23,6 +23,10 @@ public class FeatureButton : MonoBehaviour
         EventManager.Instance.StartListening(Enum.StateAction.FeatureButtonSetState.ToString(), FeatureButtonSetState);
     }
 
+    /// <summary>
+    ///feature buttons state change
+    /// </summary>
+    /// <param name="arg"></param>
     private void FeatureButtonSetState(System.Object arg = null)
     {
         bool enable = (bool)arg;

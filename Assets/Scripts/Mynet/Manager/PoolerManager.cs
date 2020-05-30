@@ -12,11 +12,6 @@ namespace Mynet.Manager
         #region singleton
         public static PoolerManager Instance;
 
-        private void Awake()
-        {
-            Instance = this;
-        }
-
         #endregion
 
         [System.Serializable]
@@ -27,16 +22,24 @@ namespace Mynet.Manager
             public int size;
         }
 
-        void Start()
+        void Awake()
         {
+            Instance = this;
             Init();
         }
 
+        /// <summary>
+        /// init properties
+        /// </summary>
         void Init()
         {
             _poolerDictionary = new Dictionary<string, Queue<GameObject>>();
         }
 
+        /// <summary>
+        /// add pools according to pool data
+        /// </summary>
+        /// <param name="poolData"></param>
         public void AddPools(Pool poolData)
         {
             if (!_poolerDictionary.ContainsKey(poolData.tag.ToString()))
@@ -53,6 +56,11 @@ namespace Mynet.Manager
             }
         }
 
+        /// <summary>
+        /// get pool according to tag
+        /// </summary>
+        /// <param name="tag"></param>
+        /// <returns></returns>
         public GameObject GetPool(Enum.Tag tag)
         {
             GameObject pool = _poolerDictionary[tag.ToString()].Dequeue();
@@ -60,6 +68,11 @@ namespace Mynet.Manager
             return pool;
         }
 
+        /// <summary>
+        /// add enque according to tag
+        /// </summary>
+        /// <param name="gO"></param>
+        /// <param name="tag"></param>
         public void AddEnqueue(GameObject gO,Enum.Tag tag)
         {
             _poolerDictionary[tag.ToString()].Enqueue(gO);

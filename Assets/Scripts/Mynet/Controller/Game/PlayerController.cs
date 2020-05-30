@@ -36,7 +36,18 @@ namespace Mynet.Controller
         /// <param name="arg"></param>
         void OnMenu(System.Object arg = null)
         {
-            transform.DOMove(onMenu, 1);
+            transform.DOMove(onMenu, 1).onComplete = () =>
+            {
+                ClearObjects();
+            };
+        }
+
+        public void ClearObjects()
+        {
+            if(tag == Enum.Tag.Clone.ToString())
+            {
+                Destroy(gameObject);
+            }
         }
 
         /// <summary>

@@ -36,6 +36,9 @@ namespace Mynet.Controller
             InitEvents();
         }
 
+        /// <summary>
+        /// start game
+        /// </summary>
         public void StartGame()
         {
             features = new List<Feature>();
@@ -43,6 +46,11 @@ namespace Mynet.Controller
             _gameStart = true;
         }
 
+
+        /// <summary>
+        /// set copy features to clone object from original prefab
+        /// </summary>
+        /// <param name="featureControllers"></param>
         public void Clone(List<Feature> featureControllers)
         {
             features = featureControllers;
@@ -95,12 +103,6 @@ namespace Mynet.Controller
         public void OnMenu(System.Object arg = null)
         {
             _gameStart = false;
-            ClearObjects();
-        }
-
-        public void ClearObjects()
-        {
-
         }
 
         /// <summary>

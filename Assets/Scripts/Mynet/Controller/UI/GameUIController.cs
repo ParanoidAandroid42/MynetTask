@@ -74,6 +74,11 @@ namespace Mynet.Controller
             }
         }
 
+        /// <summary>
+        /// create skill button 
+        /// </summary>
+        /// <param name="index"></param>
+        /// <param name="skill"></param>
         void CreateSkillButton(int index, Feature skill)
         {
             int skillButtonCount = characterSkillsData.feature.Count;
