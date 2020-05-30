@@ -1,6 +1,9 @@
 ﻿namespace Enum
 {
-    public enum SkillType
+    /// <summary>
+    /// this game have 5 different features
+    /// </summary>
+    public enum FeatureType
     {
         TripleShot,
         RateUp,

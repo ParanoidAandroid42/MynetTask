@@ -2,7 +2,6 @@
 using Mynet.Data;
 using UnityEngine;
 using UnityEngine.UI;
-using System.Collections.Generic;
 using Mynet.Manager;
 
 namespace Mynet.Controller
@@ -11,19 +10,20 @@ namespace Mynet.Controller
     {
         public GameObject buttonPrefab;
         public Button quitButton;
-        public CharacterSkillData characterSkillsData;
+        public CharacterFeatureData characterSkillsData;
 
         private RectTransform _gameUITransform;
-        private List<Button> _skillButtons;
 
         void Awake()
         {
             InitConfiguration();
         }
 
+        /// <summary>
+        /// init properties
+        /// </summary>
         void InitConfiguration()
         {
-            _skillButtons = new List<Button>();
             _gameUITransform = GetComponent<RectTransform>();
             InitEvents();
             CreateSkillButtons();
@@ -59,8 +59,8 @@ namespace Mynet.Controller
             _gameUITransform.DOAnchorPosY(0f, 1f).OnComplete(() =>
             {
                 quitButton.GetComponent<RectTransform>().DOAnchorPosX(-10f, 0.5f);
+                EventManager.Instance.TriggerEvent(Enum.StateAction.FeatureButtonSetState.ToString(), true);
             });
-            SetButtonInteractable(true);
         }
 
         /// <summary>
@@ -68,30 +68,20 @@ namespace Mynet.Controller
         /// </summary>
         void CreateSkillButtons()
         {
-            for (int i = 0; i < characterSkillsData.skills.Count; i++)
+            for (int i = 0; i < characterSkillsData.feature.Count; i++)
             {
-                CreateSkillButton(i, characterSkillsData.skills[i]);
+                CreateSkillButton(i, characterSkillsData.feature[i]);
             }
         }
 
-        /// <summary>
-        /// Set button interactable according to enable value
-        /// </summary>
-        /// <param name="enable">enable situation</param>
-        void SetButtonInteractable(bool enable)
+        void CreateSkillButton(int index, Feature skill)
         {
-            foreach (Button skillButton in _skillButtons)
-            {
-                skillButton.interactable = enable;
-            }
-        }
-
-        void CreateSkillButton(int index, CharacterSkill skill)
-        {
-            int skillButtonCount = characterSkillsData.skills.Count;
+            int skillButtonCount = characterSkillsData.feature.Count;
             Vector2 position = new Vector2(index % skillButtonCount * 90f, index / skillButtonCount * 90f);
-            SkillButton skillButton = new SkillButton(skill,buttonPrefab, _gameUITransform, new Vector2(index % 5 * 90f, index / 5 * 90f));
-            _skillButtons.Add(skillButton.button);
+
+            GameObject skillButton = MonoBehaviour.Instantiate(buttonPrefab, _gameUITransform);
+            skillButton.AddComponent<FeatureButton>();
+            skillButton.GetComponent<FeatureButton>().InitConfiguration(skill, buttonPrefab, _gameUITransform, position);
         }
     }
 }

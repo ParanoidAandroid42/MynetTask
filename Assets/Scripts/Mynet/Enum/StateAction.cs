@@ -4,6 +4,7 @@
     {
         OnGame,
         OnMenu,
-        OnRestart
+        OnRestart,
+        FeatureButtonSetState
     }
 }

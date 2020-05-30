@@ -4,45 +4,50 @@ using UnityEngine;
 using Mynet.Manager;
 using DG.Tweening;
 
-public class PlayerController : MonoBehaviour
+namespace Mynet.Controller
 {
-    public Vector3 onMenu;
-    public Vector3 onGame;
+    public class PlayerController : MonoBehaviour
+    {
+        public Vector3 onMenu;
+        public Vector3 onGame;
+        public SkillController featureController;
 
-    void Awake()
-    {
-        InitConfiguration();
-    }
+        void Awake()
+        {
+            InitConfiguration();
+        }
 
-    void InitConfiguration()
-    {
-        InitEvents();
-    } 
-    
-    /// <summary>
-       /// set event listeners
-       /// </summary>
-    void InitEvents()
-    {
-        EventManager.Instance.StartListening(Enum.StateAction.OnGame.ToString(), OnGame);
-        EventManager.Instance.StartListening(Enum.StateAction.OnMenu.ToString(), OnMenu);
-    }
+        void InitConfiguration()
+        {
+            InitEvents();
+        }
 
-    /// <summary>
-    /// on menu state configuration
-    /// </summary>
-    /// <param name="arg"></param>
-    void OnMenu(System.Object arg = null)
-    {
-        transform.DOMove(onMenu, 1);
-    }
+        /// <summary>
+        /// set event listeners
+        /// </summary>
+        void InitEvents()
+        {
+            EventManager.Instance.StartListening(Enum.StateAction.OnGame.ToString(), OnGame);
+            EventManager.Instance.StartListening(Enum.StateAction.OnMenu.ToString(), OnMenu);
+        }
 
-    /// <summary>
-    /// on game state configuration
-    /// </summary>
-    /// <param name="arg"></param>
-    void OnGame(System.Object arg = null)
-    {
-        transform.DOMove(onGame, 1);
+        /// <summary>
+        /// on menu state configuration
+        /// </summary>
+        /// <param name="arg"></param>
+        void OnMenu(System.Object arg = null)
+        {
+            transform.DOMove(onMenu, 1);
+        }
+
+        /// <summary>
+        /// on game state configuration
+        /// </summary>
+        /// <param name="arg"></param>
+        void OnGame(System.Object arg = null)
+        {
+            transform.DOMove(onGame, 1);
+
+        }
     }
 }
