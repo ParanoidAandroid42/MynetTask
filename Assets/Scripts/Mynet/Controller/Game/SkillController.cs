@@ -113,7 +113,8 @@ namespace Mynet.Controller
         {
             AddFeature(feature);
             features.Add(feature);
-            CheckAdditionalityNewFeature();
+            if(gameObject.tag == Enum.Tag.Player.ToString())
+                CheckAdditionalityNewFeature();
         }
 
         /// <summary>

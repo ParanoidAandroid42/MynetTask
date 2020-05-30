@@ -40,7 +40,7 @@ namespace Mynet.Controller
         public void Fire(float angle, Vector3 position)
         {
             PoolerManager.Pool poolData = new PoolerManager.Pool();
-            poolData.size = 10;
+            poolData.size = 15;
             poolData.prefab = _bulletPrefab;
             poolData.tag = Enum.Tag.FireBall;
             PoolerManager.Instance.AddPools(poolData);

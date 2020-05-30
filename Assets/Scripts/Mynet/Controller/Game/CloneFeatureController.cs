@@ -21,7 +21,7 @@ namespace Mynet.Controller
         /// <param name="skillController"></param>
         public override void SetFeature(SkillController skillController)
         {
-            Debug.LogError("Set Feature Clone");
+            Debug.Log("Set Feature Clone");
             GameObject clone = MonoBehaviour.Instantiate(skillController.gameObject);
 
             SkillController skill = skillController.gameObject.GetComponent<SkillController>();

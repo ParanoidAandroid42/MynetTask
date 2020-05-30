@@ -13,7 +13,7 @@ namespace Mynet.Controller
 
         public override void SetFeature(SkillController skillController)
         {
-            Debug.LogError("Set Feature triple");
+            Debug.Log("Set Feature triple");
             skillController.Attack = new TripleAttackController(skillController.Attack);
         }
     }
