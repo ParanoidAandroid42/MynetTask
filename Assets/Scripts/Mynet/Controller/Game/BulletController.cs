@@ -1,9 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
+using Mynet.Manager;
 
 public class BulletController : MonoBehaviour
 {
-    public float speed;
+    private float _speed;
+    private float _angle;
     private Rigidbody _rb;
 
     public void Start()
@@ -11,21 +13,37 @@ public class BulletController : MonoBehaviour
         _rb = GetComponent<Rigidbody>();
     }
 
+    public void OnEnable()
+    {
+        Invoke("AddQuee", 1.5f);
+    }
+
+    /// <summary>
+    /// update configuration according to spped and angle parameter
+    /// </summary>
+    /// <param name="speed"></param>
+    /// <param name="angle"></param>
+    public void UpdateConfiguration(float speed,float angle)
+    {
+        Vector3 rotation = new Vector3(0, angle, 0);
+        transform.rotation = Quaternion.EulerAngles(rotation);
+        _speed = speed;
+        _angle = angle;
+    }
+
+    /// <summary>
+    /// add quee again
+    /// </summary>
+    public void AddQuee()
+    {
+        PoolerManager.Instance.AddEnqueue(gameObject, Enum.Tag.FireBall);
+    }
+
     void FixedUpdate()
     {
-        if (speed != 0 && _rb != null)
+        if (_speed != 0 && _rb != null)
         {
-            //PlayerController.CharacterType characterType = character.GetComponent<PlayerController>().characterType;
-            //if (characterType == PlayerController.CharacterType.enemy)
-            //{
-            //    speed = 45;
-            //    _rb.position += (-transform.forward + offset) * (speed * Time.deltaTime);
-            //}
-            //else
-            //{
-            //    speed = 95;
-            //    _rb.position += (transform.forward + offset) * (speed * Time.deltaTime);
-            //}
+            _rb.position += (-transform.forward * _speed * Time.deltaTime);
         }
     }
 }

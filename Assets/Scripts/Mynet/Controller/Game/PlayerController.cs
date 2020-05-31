@@ -46,7 +46,7 @@ namespace Mynet.Controller
         {
             if(tag == Enum.Tag.Clone.ToString())
             {
-                Destroy(gameObject);
+                Destroy(gameObject);//TODO -maybe can be spawn by pooling manager - for expand
             }
         }
 

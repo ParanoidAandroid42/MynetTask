@@ -39,23 +39,10 @@ namespace Mynet.Controller
         /// <param name="position">spawn position</param>
         public void Fire(float angle, Vector3 position)
         {
-            PoolerManager.Pool poolData = new PoolerManager.Pool();
-            poolData.size = 15;
-            poolData.prefab = _bulletPrefab;
-            poolData.tag = Enum.Tag.FireBall;
-            PoolerManager.Instance.AddPools(poolData);
+            PoolerManager.Instance.AddPools(_bulletPrefab,Enum.Tag.FireBall,25);
             GameObject bullet = PoolerManager.Instance.GetPool(Enum.Tag.FireBall);
             bullet.transform.position = position;
-
-            Vector3 target = bullet.transform.position;
-
-            target.x += 15 * Mathf.Cos(angle * Mathf.Deg2Rad);
-            target.y += 15 * Mathf.Sin(angle * Mathf.Deg2Rad);
-
-            bullet.transform.DOMove(target, 15 / FireSpeed).OnComplete(() =>
-            {
-                PoolerManager.Instance.AddEnqueue(bullet,Enum.Tag.FireBall);
-            });
+            bullet.GetComponent<BulletController>().UpdateConfiguration(FireSpeed, angle);
         }
 
         /// <summary>

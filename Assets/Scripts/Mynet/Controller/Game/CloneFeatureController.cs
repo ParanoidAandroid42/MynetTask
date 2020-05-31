@@ -11,9 +11,7 @@ namespace Mynet.Controller
         readonly Vector2 _MINIMUM = new Vector2(-10f, 20f);
         readonly Vector2 _MAXIMUM = new Vector2(10f, 30f);
 
-        public CloneFeatureController(SkillController skillController) : base(skillController)
-        {
-        }
+        public CloneFeatureController(SkillController skillController) : base(skillController) { }
 
         /// <summary>
         /// set clone player
@@ -21,13 +19,12 @@ namespace Mynet.Controller
         /// <param name="skillController"></param>
         public override void SetFeature(SkillController skillController)
         {
-            Debug.Log("Set Feature Clone");
             GameObject clone = MonoBehaviour.Instantiate(skillController.gameObject);
 
             SkillController skill = skillController.gameObject.GetComponent<SkillController>();
             Vector2 randomPos = new Vector2(Random.Range(_MINIMUM.x, _MAXIMUM.x), Random.Range(_MINIMUM.y, _MAXIMUM.y));
             clone.transform.position = randomPos;
-            clone.GetComponent<SkillController>().Clone(skill.features);
+            clone.GetComponent<SkillController>().Clone(skill.Features);
             clone.tag = Enum.Tag.Clone.ToString();
         }
     }

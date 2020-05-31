@@ -40,19 +40,19 @@ namespace Mynet.Manager
         /// add pools according to pool data
         /// </summary>
         /// <param name="poolData"></param>
-        public void AddPools(Pool poolData)
+        public void AddPools(GameObject prefab, Enum.Tag tag, int size)
         {
-            if (!_poolerDictionary.ContainsKey(poolData.tag.ToString()))
+            if (!_poolerDictionary.ContainsKey(tag.ToString()))
             {
                 Queue<GameObject> pO = new Queue<GameObject>();
-                for (int i = 0; i < poolData.size; i++)
+                for (int i = 0; i < size; i++)
                 {
-                    GameObject o = Instantiate(poolData.prefab, transform);
+                    GameObject o = Instantiate(prefab, transform);
                     o.SetActive(false);
                     pO.Enqueue(o);
                 }
 
-                _poolerDictionary.Add(poolData.tag.ToString(), pO);
+                _poolerDictionary.Add(tag.ToString(), pO);
             }
         }
 

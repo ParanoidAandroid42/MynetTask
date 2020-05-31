@@ -15,7 +15,6 @@ namespace Mynet.Controller
         /// <param name="skillController"></param>
         public override void SetFeature(SkillController skillController)
         {
-            Debug.Log("Set Feature rate up");
             skillController.Attack = new DoubleShotAttackController(skillController.Attack);
         }
     }

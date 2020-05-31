@@ -25,7 +25,6 @@ namespace Mynet.Controller
         /// <param name="position">posiiton</param>
         public override void Fire(float angle, Vector3 position)
         {
-            Debug.Log("Double Shot Attack");
             base.Fire(angle,position);
         }
 
@@ -36,7 +35,7 @@ namespace Mynet.Controller
         /// <returns></returns>
         public override bool IsAttacktimeUpdated(float currentTime)
         {
-            if (_bulletRateOffsetTime == 0f)
+            if (_bulletRateOffsetTime == 0)
             {
                 if (base.IsAttacktimeUpdated(currentTime))
                 {

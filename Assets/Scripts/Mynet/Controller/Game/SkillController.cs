@@ -10,19 +10,22 @@ namespace Mynet.Controller
 {
     public class SkillController : MonoBehaviour
     {
+        [Header("fire rate")]
         public float fireRate;
+        [Header("fire speed")]
         public float fireSpeed;
+        [Header("bullet spawn offset")]
         public float rateOffset = 2;
+        [Header("bullet prefab")]
         public GameObject bulletPrefab;
+        [Header("bullet spawn point")]
         public Transform firePoint;
+        public IAttackInterface Attack { get => _attack; set => _attack = value; }
+        public List<Feature> Features { get => _features; set => _features = value; }
 
         private IAttackInterface _attack;
-        public List<Feature> features;
-
-        public IAttackInterface Attack { get => _attack; set => _attack = value; }
-
+        private List<Feature> _features;
         private Animator _animator;
-
         private bool _gameStart;
 
         public void Awake()
@@ -41,7 +44,7 @@ namespace Mynet.Controller
         /// </summary>
         public void StartGame()
         {
-            features = new List<Feature>();
+            _features = new List<Feature>();
             _attack = new BaseRangeAttackController(bulletPrefab, fireSpeed, fireRate,rateOffset);
             _gameStart = true;
         }
@@ -53,11 +56,11 @@ namespace Mynet.Controller
         /// <param name="featureControllers"></param>
         public void Clone(List<Feature> featureControllers)
         {
-            features = featureControllers;
+            _features = featureControllers;
             _attack = new BaseRangeAttackController(bulletPrefab, fireSpeed, fireRate, rateOffset);
-            for (int i = 0; i < features.Count; i++)
+            for (int i = 0; i < _features.Count; i++)
             {
-                AddFeature(features[i]);
+                AddFeature(_features[i]);
             }
             _gameStart = true;
         }
@@ -66,7 +69,8 @@ namespace Mynet.Controller
         {
             if (_gameStart && _attack.IsAttacktimeUpdated(Time.deltaTime))
             {
-                _attack.Fire(transform.eulerAngles.x, transform.position);
+                _attack.Fire(0, firePoint.transform.position);
+                _animator.Play(Enum.AnimationType.Attack.ToString());
             }
         }
 
@@ -112,7 +116,7 @@ namespace Mynet.Controller
         public void AddNewFeature(Feature feature)
         {
             AddFeature(feature);
-            features.Add(feature);
+            _features.Add(feature);
             if(gameObject.tag == Enum.Tag.Player.ToString())
                 CheckAdditionalityNewFeature();
         }
@@ -150,7 +154,7 @@ namespace Mynet.Controller
         /// <returns></returns>
         private void CheckAdditionalityNewFeature()
         {
-            if(features.Count >= 3)
+            if(_features.Count >= 3)
             {
                 EventManager.Instance.TriggerEvent(Enum.StateAction.FeatureButtonSetState.ToString(), false);
             }
