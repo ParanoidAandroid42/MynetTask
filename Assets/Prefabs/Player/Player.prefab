@@ -508,7 +508,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3332470754940515521}
-  - component: {fileID: 3518440974283523141}
   - component: {fileID: 5015238758744492126}
   - component: {fileID: 5015238758744492127}
   m_Layer: 0
@@ -534,25 +533,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -37.74, y: 180, z: 0}
---- !u!95 &3518440974283523141
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3332470754940515520}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 3ab91829268a12f4da149489d5af65fd, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &5015238758744492126
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -565,8 +545,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d88e6873be8c924469352c0c86d248d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onMenu: {x: 0, y: 50, z: 0}
-  onGame: {x: 0, y: 20, z: 0}
+  onMenuPosition: {x: 0, y: 60, z: 0}
+  onGamePosition: {x: 0, y: 20, z: 0}
 --- !u!114 &5015238758744492127
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -580,7 +560,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fireRate: 2
-  fireSpeed: 35
+  fireSpeed: 40
   rateOffset: 2
   bulletPrefab: {fileID: 1170480630469472, guid: b348c70b70beb3849acc7a74e175bd99,
     type: 3}

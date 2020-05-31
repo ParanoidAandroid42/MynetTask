@@ -31,7 +31,7 @@ namespace Mynet.Controller
 
         public void Awake()
         {
-            _animator = GetComponent<Animator>();
+            _animator = GetComponentInChildren<Animator>();
             InitConfigurations();
         }
 
@@ -71,7 +71,9 @@ namespace Mynet.Controller
             if (_gameStart && _attack.IsAttacktimeUpdated(Time.deltaTime))
             {
                 _attack.Fire(0, firePoint.transform.position);
-                _animator.Play(Enum.AnimationType.Attack.ToString());
+
+                //I could have the character attack after the end of the Animation.but I did not want to create confusion while evaluating the project
+                _animator.Play(Enum.AnimationType.Attack.ToString()); 
             }
         }
 

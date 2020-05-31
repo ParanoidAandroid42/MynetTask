@@ -29,7 +29,7 @@ namespace Mynet.Controller
         public void UpdateConfiguration(float speed, float angle)
         {
             Vector3 rotation = new Vector3(0, angle, 0);
-            transform.rotation = Quaternion.EulerAngles(rotation);
+            transform.rotation = Quaternion.Euler(rotation);
             _speed = speed;
             _angle = angle;
         }
