@@ -46,7 +46,7 @@ namespace Mynet.Controller
         public void StartGame()
         {
             _features = new List<Feature>();
-            _attack = new BaseRangeAttackController(bulletPrefab, fireSpeed, fireRate,rateOffset);
+            _attack = new BaseRangeAttackController(bulletPrefab, fireSpeed, fireRate,rateOffset,0);
             _gameStart = true;
         }
 
@@ -55,10 +55,10 @@ namespace Mynet.Controller
         /// set copy features to clone object from original prefab
         /// </summary>
         /// <param name="featureControllers"></param>
-        public void Clone(List<Feature> featureControllers)
+        public void Clone(List<Feature> featureControllers,float currentTime)
         {
             _features = featureControllers;
-            _attack = new BaseRangeAttackController(bulletPrefab, fireSpeed, fireRate, rateOffset);
+            _attack = new BaseRangeAttackController(bulletPrefab, fireSpeed, fireRate, rateOffset, currentTime);
             for (int i = 0; i < _features.Count; i++)
             {
                 AddFeature(_features[i]);
@@ -118,7 +118,7 @@ namespace Mynet.Controller
         {
             AddFeature(feature);
             _features.Add(feature);
-            if(gameObject.tag == Enum.Tag.Player.ToString())
+            if (gameObject.tag == Enum.Tag.Player.ToString())
                 CheckAdditionalityNewFeature();
         }
 

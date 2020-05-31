@@ -12,6 +12,7 @@ namespace Mynet.Abstract
         public float FireRate { get => _attack.FireRate; set => _attack.FireRate = value; }
         public float FireSpeed { get => _attack.FireSpeed; set => _attack.FireSpeed = value; }
         public float RateOffset { get => _attack.RateOffset; set => _attack.RateOffset = value; }
+        public float CurrentTime { get => _attack.CurrentTime; set => _attack.CurrentTime = value; }
 
         /// <summary>
         /// attack controller init

@@ -3,6 +3,7 @@ using Mynet.Data;
 using UnityEngine;
 using UnityEngine.UI;
 using Mynet.Manager;
+using System.Collections.Generic;
 
 namespace Mynet.Controller
 {
@@ -89,9 +90,10 @@ namespace Mynet.Controller
             float y = index / featureButtonCount * 90f;
             Vector2 position = new Vector2(x,y);
 
-            GameObject skillButton = Instantiate(buttonPrefab, _gameUITransform);
-            skillButton.AddComponent<FeatureButton>();
-            skillButton.GetComponent<FeatureButton>().InitConfiguration(feature, buttonPrefab, _gameUITransform, position);
+            GameObject fBO = Instantiate(buttonPrefab, _gameUITransform);
+            fBO.AddComponent<FeatureButton>();
+            FeatureButton fB = fBO.GetComponent<FeatureButton>();
+            fBO.GetComponent<FeatureButton>().InitConfiguration(feature, buttonPrefab, _gameUITransform, position);
         }
     }
 }

@@ -11,9 +11,9 @@ namespace Mynet.Controller
         public float FireRate { get ; set ; }
         public float FireSpeed { get; set; }
         public float RateOffset { get; set; }
+        public float CurrentTime { get; set; }
 
         private readonly GameObject _bulletPrefab;
-        private float _currentTime;
 
         /// <summary>
         /// base range attack controller init
@@ -22,14 +22,15 @@ namespace Mynet.Controller
         /// <param name="fireSpeed">fire speed</param>
         /// <param name="fireRate">fire rate</param>
         /// <param name="rateOffset">rate offset</param>
-        public BaseRangeAttackController(GameObject bulletPrefab, float fireSpeed, float fireRate,float rateOffset)
+        /// <param name="currentTime">start time</param>
+        public BaseRangeAttackController(GameObject bulletPrefab, float fireSpeed, float fireRate,float rateOffset,float currentTime)
         {
             _bulletPrefab = bulletPrefab;
-            _currentTime = 0;
 
             FireSpeed = fireSpeed;
             FireRate = fireRate;
             RateOffset = rateOffset;
+            CurrentTime = currentTime;
         }
 
         /// <summary>
@@ -52,9 +53,9 @@ namespace Mynet.Controller
         /// <returns></returns>
         public bool IsAttacktimeUpdated(float currentTime)
         {
-            if ((_currentTime += currentTime) > FireRate)
+            if ((CurrentTime += currentTime) > FireRate)
             {
-                _currentTime = 0;
+                CurrentTime = 0;
                 return true;
             }
             return false;

@@ -27,7 +27,7 @@ namespace Mynet.Controller
             Vector2 randomPos = new Vector2(randX, randY);
             clone.transform.position = randomPos;
             clone.transform.rotation = skillController.transform.rotation;
-            clone.GetComponent<SkillController>().Clone(skill.Features);
+            clone.GetComponent<SkillController>().Clone(skill.Features, skill.Attack.CurrentTime);
             clone.tag = Enum.Tag.Clone.ToString();
         }
     }
