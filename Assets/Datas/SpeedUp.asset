@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: SpeedUp
   m_EditorClassIdentifier: 
   featureType: 2
-  image: {fileID: 21300000, guid: 9afb0580a47d9e647a0e6b843531c9a6, type: 3}
-  featureInfo: 
+  image: {fileID: 21300000, guid: e952759497295484e9fae0b42238a406, type: 3}
+  featureInfo: "\r\nIncreases the speed of bullets fired by 50 percent."

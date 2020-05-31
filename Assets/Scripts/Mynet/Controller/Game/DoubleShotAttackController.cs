@@ -6,7 +6,7 @@ namespace Mynet.Controller
 {
     public class DoubleShotAttackController : AttackController
     {
-        const float _OFFSET_RATE_ = 0.2f;
+        const float _OFFSET_RATE_ = 0.3f;
         private float _bulletRateOffsetTime;
 
         /// <summary>
