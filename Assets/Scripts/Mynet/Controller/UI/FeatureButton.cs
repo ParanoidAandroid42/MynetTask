@@ -13,7 +13,7 @@ public class FeatureButton : MonoBehaviour
         GetComponent<RectTransform>().anchoredPosition = position;
         button = GetComponent<Button>();
         button.GetComponent<Image>().sprite = skill.image;
-        button.onClick.AddListener(OnSkillButton);
+        button.onClick.AddListener(OnFeatureButton);
         _skill = skill;
         InitEvents();
     }
@@ -43,9 +43,9 @@ public class FeatureButton : MonoBehaviour
     }
 
     /// <summary>
-    /// When Press skill button 
+    /// run the methow when press feature button 
     /// </summary>
-    public void OnSkillButton()
+    public void OnFeatureButton()
     {
         EventManager.Instance.TriggerEvent(Enum.GameAction.OnFeatureButton.ToString(), _skill);
         SetInteractive(false);

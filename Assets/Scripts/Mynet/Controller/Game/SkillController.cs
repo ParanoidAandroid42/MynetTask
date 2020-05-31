@@ -20,13 +20,14 @@ namespace Mynet.Controller
         public GameObject bulletPrefab;
         [Header("bullet spawn point")]
         public Transform firePoint;
-        public IAttackInterface Attack { get => _attack; set => _attack = value; }
-        public List<Feature> Features { get => _features; set => _features = value; }
 
         private IAttackInterface _attack;
         private List<Feature> _features;
         private Animator _animator;
         private bool _gameStart;
+
+        public IAttackInterface Attack { get => _attack; set => _attack = value; }
+        public List<Feature> Features { get => _features; set => _features = value; }
 
         public void Awake()
         {

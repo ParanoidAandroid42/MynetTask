@@ -9,6 +9,10 @@ namespace Mynet.Controller
     {
         public QuickUpFeatureController(SkillController skillController) : base(skillController) { }
 
+        /// <summary>
+        /// Set feature init configuration
+        /// </summary>
+        /// <param name="skillController"></param>
         public override void SetFeature(SkillController skillController)
         {
             skillController.Attack.FireRate /= 2;

@@ -8,8 +8,10 @@ namespace Mynet.Controller
 {
     public class PlayerController : MonoBehaviour
     {
-        public Vector3 onMenu;
-        public Vector3 onGame;
+        [Header("position in the menu")]
+        public Vector3 onMenuPosition;
+        [Header("position in the game")]
+        public Vector3 onGamePosition;
 
         void Awake()
         {
@@ -36,17 +38,17 @@ namespace Mynet.Controller
         /// <param name="arg"></param>
         void OnMenu(System.Object arg = null)
         {
-            transform.DOMove(onMenu, 1).onComplete = () =>
+            transform.DOMove(onMenuPosition, 1).onComplete = () =>
             {
-                ClearObjects();
+                ClearClones();
             };
         }
 
-        public void ClearObjects()
+        public void ClearClones()
         {
             if(tag == Enum.Tag.Clone.ToString())
             {
-                Destroy(gameObject);//TODO -maybe can be spawn by pooling manager - for expand
+                Destroy(gameObject);//TODO -maybe can be spawn by pooling manager
             }
         }
 
@@ -56,7 +58,7 @@ namespace Mynet.Controller
         /// <param name="arg"></param>
         void OnGame(System.Object arg = null)
         {
-            transform.DOMove(onGame, 1);
+            transform.DOMove(onGamePosition, 1);
         }
     }
 }

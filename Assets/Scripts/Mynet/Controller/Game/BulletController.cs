@@ -15,7 +15,7 @@ public class BulletController : MonoBehaviour
 
     public void OnEnable()
     {
-        Invoke("AddQuee", 1.5f);
+        Invoke("AddQuee", 2f);
     }
 
     /// <summary>

@@ -39,7 +39,7 @@ namespace Mynet.Controller
         /// <param name="position">spawn position</param>
         public void Fire(float angle, Vector3 position)
         {
-            PoolerManager.Instance.AddPools(_bulletPrefab,Enum.Tag.FireBall,25);
+            PoolerManager.Instance.AddPools(_bulletPrefab,Enum.Tag.FireBall,35);
             GameObject bullet = PoolerManager.Instance.GetPool(Enum.Tag.FireBall);
             bullet.transform.position = position;
             bullet.GetComponent<BulletController>().UpdateConfiguration(FireSpeed, angle);

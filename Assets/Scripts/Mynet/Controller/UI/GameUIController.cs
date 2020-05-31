@@ -8,8 +8,11 @@ namespace Mynet.Controller
 {
     public class GameUIController : MonoBehaviour
     {
+        [Header("Feature button prefab")]
         public GameObject buttonPrefab;
+        [Header("quit button")]
         public Button quitButton;
+        [Header("character's skills data")]
         public CharacterFeatureData characterSkillsData;
 
         private RectTransform _gameUITransform;
@@ -43,7 +46,7 @@ namespace Mynet.Controller
         /// </summary>
         void OnQuitButton()
         {
-            quitButton.GetComponent<RectTransform>().DOAnchorPosX(145f, 0.5f).OnComplete(() =>
+            quitButton.GetComponent<RectTransform>().DOAnchorPosX(150f, 0.5f).OnComplete(() =>
             {
                 _gameUITransform.DOAnchorPosY(-800f, 3f);
                 EventManager.Instance.TriggerEvent(Enum.StateAction.OnMenu.ToString());
@@ -56,37 +59,39 @@ namespace Mynet.Controller
         /// <param name="arg"></param>
         void OnGame(System.Object arg = null)
         {
-            _gameUITransform.DOAnchorPosY(0f, 1f).OnComplete(() =>
+            _gameUITransform.DOAnchorPosY(0, 1).OnComplete(() =>
             {
-                quitButton.GetComponent<RectTransform>().DOAnchorPosX(-10f, 0.5f);
+                quitButton.GetComponent<RectTransform>().DOAnchorPosX(-10f, 0.55f);
                 EventManager.Instance.TriggerEvent(Enum.StateAction.FeatureButtonSetState.ToString(), true);
             });
         }
 
         /// <summary>
-        /// create all skill buttons according to character skills data
+        /// create all skill buttons according to character's skills data
         /// </summary>
         void CreateSkillButtons()
         {
             for (int i = 0; i < characterSkillsData.feature.Count; i++)
             {
-                CreateSkillButton(i, characterSkillsData.feature[i]);
+                CreateFeatureButton(i, characterSkillsData.feature[i]);
             }
         }
 
         /// <summary>
-        /// create skill button 
+        /// create feature button 
         /// </summary>
-        /// <param name="index"></param>
-        /// <param name="skill"></param>
-        void CreateSkillButton(int index, Feature skill)
+        /// <param name="index">index</param>
+        /// <param name="feature">feature data</param>
+        void CreateFeatureButton(int index, Feature feature)
         {
-            int skillButtonCount = characterSkillsData.feature.Count;
-            Vector2 position = new Vector2(index % skillButtonCount * 90f, index / skillButtonCount * 90f);
+            int featureButtonCount = characterSkillsData.feature.Count;
+            float x = index % featureButtonCount * 90f;
+            float y = index / featureButtonCount * 90f;
+            Vector2 position = new Vector2(x,y);
 
-            GameObject skillButton = MonoBehaviour.Instantiate(buttonPrefab, _gameUITransform);
+            GameObject skillButton = Instantiate(buttonPrefab, _gameUITransform);
             skillButton.AddComponent<FeatureButton>();
-            skillButton.GetComponent<FeatureButton>().InitConfiguration(skill, buttonPrefab, _gameUITransform, position);
+            skillButton.GetComponent<FeatureButton>().InitConfiguration(feature, buttonPrefab, _gameUITransform, position);
         }
     }
 }

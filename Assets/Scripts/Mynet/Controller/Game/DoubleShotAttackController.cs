@@ -15,7 +15,7 @@ namespace Mynet.Controller
         /// <param name="attack"></param>
         public DoubleShotAttackController(IAttackInterface attack) : base(attack)
         {
-            _bulletRateOffsetTime = 0f;
+            _bulletRateOffsetTime = 0;
         }
 
         /// <summary>
@@ -47,9 +47,9 @@ namespace Mynet.Controller
             else
             {
                 _bulletRateOffsetTime -= currentTime;
-                if (_bulletRateOffsetTime <= 0f)
+                if (_bulletRateOffsetTime <= 0)
                 {
-                    _bulletRateOffsetTime = 0f;
+                    _bulletRateOffsetTime = 0;
                     return true;
                 }
                 return false;

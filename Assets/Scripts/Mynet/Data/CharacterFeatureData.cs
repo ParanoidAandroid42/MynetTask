@@ -4,7 +4,7 @@ using UnityEngine;
 namespace Mynet.Data
 {
     /// <summary>
-    /// You can create your character feature data -> right mouse - create - Feature - New Character Skill Data
+    /// You can create your character feature data -> right mouse - create - Feature - New Character feature Data
     /// </summary>
     [CreateAssetMenu(fileName = "NewCharacterFeatureData", menuName = "Feature/New Character Feature Data", order = 2)]
     public class CharacterFeatureData : ScriptableObject
