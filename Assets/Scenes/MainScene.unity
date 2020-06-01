@@ -915,7 +915,7 @@ MonoBehaviour:
   buttonPrefab: {fileID: 2802189953929597848, guid: bafad75c276fe4472a7e60cf9fd8bf17,
     type: 3}
   quitButton: {fileID: 3411174297492340224}
-  characterSkillsData: {fileID: 11400000, guid: 8450ffc8a02c4944a97d3cb6410292aa,
+  characterFeatureData: {fileID: 11400000, guid: 8450ffc8a02c4944a97d3cb6410292aa,
     type: 2}
 --- !u!224 &4474328146231232110
 RectTransform:

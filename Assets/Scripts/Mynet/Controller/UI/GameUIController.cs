@@ -14,7 +14,7 @@ namespace Mynet.Controller
         [Header("quit button")]
         public Button quitButton;
         [Header("character's skills data")]
-        public CharacterFeatureData characterSkillsData;
+        public CharacterFeatureData characterFeatureData;
 
         private RectTransform _gameUITransform;
 
@@ -30,7 +30,7 @@ namespace Mynet.Controller
         {
             _gameUITransform = GetComponent<RectTransform>();
             InitEvents();
-            CreateSkillButtons();
+            CreateFeatureButtons();
         }
 
         /// <summary>
@@ -68,13 +68,13 @@ namespace Mynet.Controller
         }
 
         /// <summary>
-        /// create all skill buttons according to character's skills data
+        /// create all feature buttons according to character's features data
         /// </summary>
-        void CreateSkillButtons()
+        void CreateFeatureButtons()
         {
-            for (int i = 0; i < characterSkillsData.feature.Count; i++)
+            for (int i = 0; i < characterFeatureData.feature.Count; i++)
             {
-                CreateFeatureButton(i, characterSkillsData.feature[i]);
+                CreateFeatureButton(i, characterFeatureData.feature[i]);
             }
         }
 
@@ -85,7 +85,7 @@ namespace Mynet.Controller
         /// <param name="feature">feature data</param>
         void CreateFeatureButton(int index, Feature feature)
         {
-            int featureButtonCount = characterSkillsData.feature.Count;
+            int featureButtonCount = characterFeatureData.feature.Count;
             float x = index % featureButtonCount * 90f;
             float y = index / featureButtonCount * 90f;
             Vector2 position = new Vector2(x,y);
