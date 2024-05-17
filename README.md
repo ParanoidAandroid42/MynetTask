@@ -26,7 +26,7 @@ This is a demo project for an interview code challenge, built using Unity Versio
 
 ## Video Demo
 
-Check out the video demonstration of the game: [Special Powers Shooter Game Demo](https://youtu.be/rCQzSPE_RWc)
+Check out the video demonstration of the game: [Special Powers Shooter Game Demo](https://www.youtube.com/watch?v=rCQzSPE_RWc) 
 
 ## Installation
 
